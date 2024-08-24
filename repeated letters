@@ -1,0 +1,40 @@
+# Task 1: Find the number of letters repeatedly present in the given word
+word = input("Enter the word: ")
+letter_count = {}
+repeated_letters = []
+
+for letter in word:
+    letter_count[letter] = letter_count.get(letter, 0) + 1
+
+for letter, count in letter_count.items():
+    if count > 1:
+        repeated_letters.append(letter)
+
+print(f"Number of repeated letters = {len(repeated_letters)} Repeated letter = {', '.join(repeated_letters)}")
+
+# Task 2: Determine if two strings are isomorphic
+s = "egg"
+t = "add"
+
+def are_isomorphic(s, t):
+    if len(s) != len(t):
+        return False
+    mapping_s_t = {}
+    mapping_t_s = {}
+    
+    for char_s, char_t in zip(s, t):
+        if char_s in mapping_s_t:
+            if mapping_s_t[char_s] != char_t:
+                return False
+        else:
+            mapping_s_t[char_s] = char_t
+        
+        if char_t in mapping_t_s:
+            if mapping_t_s[char_t] != char_s:
+                return False
+        else:
+            mapping_t_s[char_t] = char_s
+            
+    return True
+
+print(are_isomorphic(s, t))
